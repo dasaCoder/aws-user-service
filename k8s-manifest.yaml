@@ -1,53 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs-app
+  name: user-service-app
 spec:
-  replicas: 2  # Number of app instances you want
+  replicas: 2  # Number of replicas/instances you want
   selector:
     matchLabels:
-      app: nodejs-app
+      app: user-service-app
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: user-service-app
     spec:
       containers:
-        - name: nodejs-app
-          image: your-docker-image-repo:latest  # Replace with your Docker image repository URL
+        - name: user-service-app
+          image: burbasdocker/user-service:latest  # Replace with your Docker image repo
           ports:
-            - containerPort: 3000
+            - containerPort: 3000  # Replace with your exposed port
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs-service
+  name: user-service-service
 spec:
   selector:
-    app: nodejs-app
+    app: user-service-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: NodePort  # Change as per your networking requirements
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nodejs-ingress
-spec:
-  rules:
-    - host: your-hostname.com  # Replace with your actual hostname
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nodejs-service
-                port:
-                  number: 80
+  type: LoadBalancer  # Change as per your networking requirements
