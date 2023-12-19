@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: user-service-app
-          image: burbasdocker/user-service:latest  # Replace with your Docker image repo
+          image: burbasdocker/user-service:latest 
           ports:
-            - containerPort: 3000  # Replace with your exposed port
+            - containerPort: 3000 
       imagePullSecrets:
         - name: dockerhubcredentials
 
@@ -33,4 +33,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer  # Change as per your networking requirements
+  type: LoadBalancer  
