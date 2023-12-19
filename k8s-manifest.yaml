@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: user-service-app
 spec:
-  replicas: 2  # Number of replicas/instances you want
+  replicas: 2  
   selector:
     matchLabels:
       app: user-service-app
@@ -31,6 +31,6 @@ spec:
     app: user-service-app
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 3000
   type: LoadBalancer  # Change as per your networking requirements
