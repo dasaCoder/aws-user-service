@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # Adjust as per your branch name
+      - feature/*
   # You can add additional triggers like pull requests or specific tags if needed
 
 jobs:
@@ -27,6 +28,9 @@ jobs:
       - name: Push the Docker image to Docker Hub
         run: docker push burbasdocker/user-service:latest
         # Replace 'your-docker-username' and 'your-docker-repo' with your Docker Hub username and repository name
+      
+      - name: Update Kubernetes config for Amazon EKS
+        run: aws eks update-kubeconfig --name gihan-iit
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

@@ -29,6 +29,6 @@ spec:
     app: user-service-app
   ports:
     - protocol: TCP
-      port: 8081
+      port: 8080
       targetPort: 3000
   type: LoadBalancer  # Change as per your networking requirements
