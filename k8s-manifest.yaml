@@ -17,6 +17,8 @@ spec:
           image: burbasdocker/user-service:latest  # Replace with your Docker image repo
           ports:
             - containerPort: 3000  # Replace with your exposed port
+      imagePullSecrets:
+        - name: dockerhubcredentials
 
 ---
 
